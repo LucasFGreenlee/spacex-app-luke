@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>roadsters</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th><abbr title="name">name</abbr></th>
+
+                <th><abbr title="type">type</abbr></th>
+
+                <th><abbr title="customers">customers</abbr></th>
+
+                <th><abbr title="nationalities">nationalities</abbr></th>
+                <th><abbr title="manufacturers">manufacturers</abbr></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% roadsters.forEach(function(roadster) { %>
+                <tr>
+                    <td>
+                        <%= roadster.name %>
+                    </td>
+
+                    <td>
+                        <%= roadster.type %>
+                    </td>
+
+                    <td>
+                        <%= roadster.customers %>
+                    </td>
+
+                    <td>
+                        <%= roadster.nationalities %>
+                    </td>
+                    <td>
+                        <%= roadster.manufacturers %>
+                    </td>
+                </tr>
+                <% }); %>
+        </tbody>
+    </table>
+
+</body>
+
+</html>

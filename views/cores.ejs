@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cores</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th><abbr title="block">block</abbr></th>
+                <th><abbr title="reuse-count">reuse count</abbr></th>
+                <th><abbr title="rtls-attempts">rtls attempts</abbr></th>
+                <th><abbr title="rtls-landings">rtls landings</abbr></th>
+                <th><abbr title="asds-attempts">asds attempts</abbr></th>
+                <th><abbr title="asds-landings">asds landings</abbr></th>
+                <th><abbr title="last-update">last update</abbr></th>
+                <th><abbr title="launches">launches</abbr></th>
+                <th><abbr title="serial">serial</abbr></th>
+                <th><abbr title="status">status</abbr></th>
+                <th><abbr title="id">id</abbr></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% cores.forEach(function(core) { %>
+                <tr>
+                    <td>
+                        <%= core.block %>
+                    </td>
+                    <td>
+                        <%= core.reuse_count %>
+                    </td>
+                    <td>
+                        <%= core.rtls_attempts %>
+                    </td>
+                    <td>
+                        <%= core.rtls_landings %>
+                    </td>
+                    <td>
+                        <%= core.asds_attempts %>
+                    </td>
+                    <td>
+                        <%= core.asds_landings %>
+                    </td>
+                    <td>
+                        <%= core.last_update %>
+                    </td>
+                    <td>
+                        <%= core.launches %>
+                    </td>
+                    <td>
+                        <%= core.serial %>
+                    </td>
+                    <td>
+                        <%= core.status %>
+                    </td>
+                    <td>
+                        <%= core.id %>
+                    </td>
+                </tr>
+                <% }); %>
+        </tbody>
+    </table>
+
+</body>
+
+</html>

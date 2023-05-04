@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>landpads</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th><abbr title="full-name">Full Name</abbr></th>
+
+                <th><abbr title="status">status</abbr></th>
+
+                <th><abbr title="region">region</abbr></th>
+
+                <th><abbr title="landing-attempts">Landing Attempts</abbr></th>
+                <th><abbr title="landing-success">Landing Success</abbr></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% landpads.forEach(function(landpad) { %>
+                <tr>
+                    <td>
+                        <%= landpad.full_name %>
+                    </td>
+
+                    <td>
+                        <%= landpad.status %>
+                    </td>
+
+                    <td>
+                        <%= landpad.region %>
+                    </td>
+
+                    <td>
+                        <%= landpad.landing_attempts %>
+                    </td>
+                    <td>
+                        <%= landpad.landing_success %>
+                    </td>
+                </tr>
+                <% }); %>
+        </tbody>
+    </table>
+
+</body>
+
+</html>

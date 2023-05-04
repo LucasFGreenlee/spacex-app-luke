@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rockets</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th><abbr title="number">number</abbr></th>
+
+                <th><abbr title="type">type</abbr></th>
+
+                <th><abbr title="version">version</abbr></th>
+
+                <th><abbr title="layout">layout</abbr></th>
+                <th><abbr title="thrust-to-weight">Thrust to Weight</abbr></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% rockets.forEach(function(rocket) { %>
+                <tr>
+                    <td>
+                        <%= rocket.number %>
+                    </td>
+
+                    <td>
+                        <%= rocket.type %>
+                    </td>
+
+                    <td>
+                        <%= rocket.version %>
+                    </td>
+
+                    <td>
+                        <%= rocket.layout %>
+                    </td>
+                    <td>
+                        <%= rocket.thrust_to_weight %>
+                    </td>
+                </tr>
+                <% }); %>
+        </tbody>
+    </table>
+
+</body>
+
+</html>
