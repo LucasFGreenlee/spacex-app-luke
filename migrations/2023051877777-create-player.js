@@ -2,29 +2,29 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('capsules', {
+    await queryInterface.createTable('player', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      reuse_count: {
+      firstName: {
+        type: Sequelize.STRING
+      },
+      lastName: {
+        type: Sequelize.STRING
+      },
+      team: {
+        type: Sequelize.STRING
+      },
+      number: {
         type: Sequelize.INTEGER
       },
-      water_landings: {
-        type: Sequelize.INTEGER
-      },
-      last_update: {
+      city: {
         type: Sequelize.STRING
       },
-      serial: {
-        type: Sequelize.STRING
-      },
-      type: {
-        type: Sequelize.STRING
-      },
-      createdAt: {
+      position: {
         allowNull: false,
         type: Sequelize.DATE
       },
@@ -35,6 +35,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('capsules');
+    await queryInterface.dropTable('player');
   }
 };

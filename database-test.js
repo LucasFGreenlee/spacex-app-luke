@@ -1,4 +1,5 @@
-const { member, ship } = require('./models');
+const { member, ship, user, order, mission } = require('./models');
+const capsule = require('./models/capsule');
 
 
 // create first member
@@ -47,8 +48,8 @@ member.findOrCreate({
 //member.findAll()
 //    .then((allMembers) => {
 //        console.log('ALL MEMBERS', allMembers);
- //       cleanedMembers = allMembers.map((member) => {
- //           return member.toJson();
+//       cleanedMembers = allMembers.map((member) => {
+//           return member.toJson();
 //            console.log('CLEANED MEMBERS ARRAY', cleanedMembers);
 //        })
 //    })
@@ -142,7 +143,7 @@ ship.findOrCreate({
 //})
 //    .catch((err) => {
 //        console.log('ERROR', err);
- //   })
+//   })
 
 ship.findAll({
     where: { status: 'active' }
@@ -190,3 +191,174 @@ ship.destroy({
     .catch((err) => {
         console.log('ERROR', err);
     })
+
+//make a user
+user.create({
+    firstName: 'Luke',
+    lastName: 'Bomb',
+    email: 'lukebomb@email.com'
+})
+    .then((user) => {
+        console.log('RAW CREATED USER', user);
+        console.log('CREATED USER JSON', user.toJson());
+    }
+    )
+    .catch((err) => {
+        console.log('ERROR', err);
+    }
+    )
+
+// find a user and create an order
+user.findOne({
+    where: { email: 'lukebomb@email.com' }
+})
+    .then((foundUser) => {
+        console.log('FOUND USER JSON', foundUser.toJson());
+        foundUser.createOrder({
+            total: 200000.15,
+            items_purchased: 5,
+            payment_method: 'American Express'
+        })
+            .then((order) => {
+                console.log('RAW CREATED ORDER', order);
+                console.log('CREATED ORDER JSON', order.toJson());
+            })
+    })
+
+// find user and return all orders
+user.findOne({
+    where: { email: 'lukebomb@email.com' }
+})
+    .then((foundUser) => {
+        // read all orders for this user
+        foundUser.getOrders()
+            .then((orders) => {
+                console.log('ORDERS', orders);
+                const cleanedOrders = orders.map(order => order.toJson()); {
+                }
+                console.log('CLEANED ORDERS', cleaned_orders);
+            })
+            .catch((err) => {
+                console.log('ERROR', err);
+            })
+    })
+    .catch((err) => {
+        console.log('ERROR', err);
+    })
+
+order.create({
+    items_purchased: 7,
+    total: 1000000.99,
+    payment_method: 'American Express',
+})
+    .then((order) => {
+        console.log('RAW CREATED ORDER', order);
+        console.log('CREATED ORDER JSON', order.toJson());
+        user.findOne({
+            where: { email: 'lukebomb@email.com' }
+        })
+            .then((foundUser) => {
+                console.log('FOUND USER JSON', foundUser.toJson());
+                foundUser.addOrder(order)
+                    .then((orders) => {
+                        console.log('RELATION INFO', orders);
+                    })
+            })
+            .catch((err) => {
+                console.log('ERROR', err);
+            })
+    })
+    .catch((err) => {
+        console.log('ERROR', err);
+    })
+
+//add a mission to a capsule
+mission.create({
+    flight_number: 34934893,
+    name: 'Steal the Moon',
+    details: 'Robbing the moon of its cheese'
+})
+    .then((mission) => {
+        console.log('RAW CREATED MISSION', mission);
+        console.log('CREATED MISSION JSON', mission.toJson());
+        capsule.findOne({
+            where: { id: 1 }
+        })
+            .then((foundCapsule) => {
+                console.log('FOUND CAPSULE JSON', foundCapsule.toJson());
+                mission.addCapsule(capsule)
+                    .then(updatedMission => {
+                        console.log('result', updatedMission)
+                        // get capsules that belong to mission
+                        updatedMission.getCapsule()
+                            .then(capsules => {
+                                console.log('CAPSULES', capsules);
+                            })
+                            .catch((err) => {
+                                console.log('ERROR', err);
+                            })
+                            .catch((err) => {
+                                console.log('ERROR', err);
+                            })
+                            .catch((err) => {
+                                console.log('ERROR', err);
+                            })
+                    })
+                    .catch((err) => {
+                        console.log('ERROR', err);
+                    })
+            })
+    })
+    .catch((err) => {
+        console.log('ERROR', err);
+    }
+    )
+
+
+    //find capsule and create a mission, then add mission to capsule (hint: addMission)
+capsule.findOne({
+    where: { id: 2 }
+})
+    .then((foundCapsule) => {
+        console.log('FOUND CAPSULE JSON', foundCapsule.toJson());
+        mission.create({
+            flight_number: 309454,
+            name: 'Make it back...',
+            details: 'Return with all the moon cheese'
+        })
+            .then((mission) => {
+                console.log('RAW CREATED MISSION', mission);
+                console.log('CREATED MISSION JSON', mission.toJson());
+                foundCapsule.addMission(mission)
+                    .then(updatedCapsule => {
+                        console.log('result', updatedCapsule)
+                        // get missions that belong to capsule
+                        updatedCapsule.getMission()
+                            .then(missions => {
+                                console.log('MISSIONS', missions);
+                            })
+                            .catch((err) => {
+                                console.log('ERROR', err);
+                            })
+                    })
+                    .catch((err) => {
+                        console.log('ERROR', err);
+                    })
+            })
+            .catch((err) => {
+                console.log('ERROR', err);
+            }
+            )
+    })
+
+    mission.findOne({
+        where: { id: 1 }
+        include: [capsule]
+    })
+        .then((foundMission) => {
+            console.log('FOUND MISSION JSON', foundMission.toJson());
+            console.log('FOUND MISSION JSON', foundMission.capsule.toJson());
+        })
+        .catch((err) => {
+            console.log('ERROR', err);
+        })

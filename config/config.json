@@ -1,15 +1,21 @@
 {
   "development": {
-    "database": "spacex",
+    "username": "postgres",
+    "password": "postgres",
+    "database": "spacexdb",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
-    "database": "spacex_test",
+    "username": "postgres",
+    "password": "postgres",
+    "database": "spacexdb",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
+    "username": "postgres",
+    "password": "postgres",
     "use_env_variable": "DATABASE_URL",
     "dialect": "postgres",
     "dialectOptions": {
