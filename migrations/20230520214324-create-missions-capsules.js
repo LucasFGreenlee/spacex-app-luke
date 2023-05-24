@@ -9,10 +9,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      missionID: {
+      missionId: {
         type: Sequelize.INTEGER
       },
-      capsuleID: {
+      capsuleId: {
         type: Sequelize.INTEGER
       },
       createdAt: {

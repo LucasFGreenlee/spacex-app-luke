@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   missionsCapsules.init({
-    missionID: DataTypes.INTEGER,
-    capsuleID: DataTypes.INTEGER
+    missionId: DataTypes.INTEGER,
+    capsuleId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'missionsCapsules',

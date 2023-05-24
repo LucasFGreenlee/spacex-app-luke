@@ -1,0 +1,90 @@
+<section class="pt-6">
+    <div class="container shadow section-sm rounded">
+        <div class="columns is-multiline">
+            <!-- sidebar -->
+            <div class="column is-3-desktop is-12-tablet">
+                <ul class="sidenav">
+                    <li title="Crew" class="sidelist parent">
+                        <a href="/crew">Crew</a>
+                        <ul>
+                            <li class="sidelist parent active">
+                                <% let firstName=member.name.split(' ')[0]; %>
+                                <% let lastName = member.name.split(' ')[1]; %>
+                                <a href="/single-crew/<%= firstName %>/<%= lastName %>"><%= member.name %></a>
+                            </li>
+                            <% crew.forEach((mem) => { %>
+                                <% if (mem.name !== member.name) { %>
+                                    <% let memFirstName = mem.name.split(' ')[0]; %>
+                                    <% let memLastName = mem.name.split(' ')[1]; %>
+                                    <li class="sidelist">
+                                        <a href="/single-crew/<%= memFirstName %>/<%= memLastName %>">
+                                            <%= mem.name %>
+                                        </a>
+                                    </li>
+                                <% } %>
+                            <% }); %>
+                        </ul>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/capsules">Capsules</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/cores">Cores</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/dragons">Dragons</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/landpads">Landpads</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/launches">Launches</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/launchpads">Launchpads</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/payloads">Payloads</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/roadster">Roadster</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/rockets">Rockets</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/ships">Ships</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/starlink">Starlink</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="column is-8-desktop is-12-tablet">
+                <div class="px-4">
+                    <h2 class="mb-4 has-text-weight-medium">Single Crew - <a class = "has-text-weight-light" href="/crew/search">search</a></h2>
+                    <div class="content">
+                        <div class="card"><div class="card-content"><div class="content">
+                            <p><img src="<%= member.image %>" alt="<%= member.name %>"></p>
+                            <p><strong><a href="/single-crew/<%= firstName %>/<%= lastName %>"><%= member.name %></a></strong></p>
+                            <ul>
+                                <li>Agency: <%= member.agency %></li>
+                                <li>Status: <%= member.status %></li>
+                                <li><a href="<%= member.wikipedia %>">Wikipedia</a></li>
+                            </ul>
+                            <div class="mt-5">
+                                <h5>Launches</h5>
+                                <ul>
+                                <% member.launches.forEach((launch) => { %>
+                                    <li><%= launch %></li>
+                                <% }); %>
+                                </ul>
+                            </div>
+                        </div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

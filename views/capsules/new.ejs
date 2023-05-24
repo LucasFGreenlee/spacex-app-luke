@@ -1,0 +1,46 @@
+<section class="section">
+   <div class="container">
+      <div class="columns is-desktop is-justify-content-center">
+         <div class="column is-8-desktop">
+            <div class="p-6 shadow rounded content">
+               <h2 class="section-title">Add New Capsule</h2>
+               <form method="POST" action="/capsules/new">
+                  <div class="columns is-multiline">
+                     <div class="form-group column is-12">
+                        <label for="type">Type</label>
+                        <select id="type" class="input custom-select" name="type" required>
+                           <option selected disabled>Choose Your Type</option>
+                           <option value="Dragon 1.0">Dragon 1.0</option>
+                           <option value="Dragon 2.0">Dragon 2.0</option>
+                        </select>
+                     </div>
+                     <div class="form-group column is-12">
+                        <label for="reuse_count">Reuse Count</label>
+                        <input type="text" class="input" id="reuse_count" name="reuse_count" placeholder="0"
+                           required>
+                     </div>
+                     <div class="form-group column is-12">
+                       <label for="water_landings">Water Landings</label>
+                       <input type="text" class="input" id="water_landings" name="water_landings" placeholder="1"
+                          required>
+                    </div>
+                    <div class="form-group column is-12">
+                       <label for="last_update">Last Update</label>
+                       <input type="text" class="input" id="last_update" name="last_update" placeholder="Going to Mars..."
+                          required>
+                    </div>
+                    <div class="form-group column is-12">
+                       <label for="serial">Serial</label>
+                       <input type="text" class="input" id="serial" name="serial" placeholder="C9000"
+                          required>
+                    </div>
+                     <div class="column is-12">
+                        <button type="submit" class="btn btn-primary">Send</button>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>

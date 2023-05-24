@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.mission.belongsToMany(models.capsule, {through: 'missionsCapsules'})
+      models.mission.belongsToMany(models.capsule, { through: 'missionsCapsules' });
     }
   }
   mission.init({

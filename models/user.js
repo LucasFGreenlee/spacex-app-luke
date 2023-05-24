@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.user.hasMany(models.order);
+      models.user.hasMany(models.order); // user can have many orders
     }
   }
   user.init({
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       validate: {
-        isEmail: true
+        isEmail: { msg: 'Invalid email' }
       }
     }
   }, {

@@ -1,364 +1,257 @@
-const { member, ship, user, order, mission } = require('./models');
-const capsule = require('./models/capsule');
+const { member, capsule, user, order, mission } = require('./models');
 
+// create our first member
+// member.create({
+//     name: 'John Smith',
+//     status: 'active',
+//     agency: 'Roscosmos',
+//     image: 'https://ca.slack-edge.com/T0351JZQ0-U0166E8MHJT-a00fa1232131-512',
+//     wikipedia: 'https://wikipedia.com'
+// })
+// .then(createdMember => {
+//     console.log('RAW CREATED MEMBER', createdMember);
+//     console.log('CLEANED MEMBER', createdMember.toJSON());
+// })
 
-// create first member
-member.create({
-    name: 'Luke Bomb',
-    status: 'active',
-    agency: 'Rosscosmos',
-    image: 'https://ca.slack-edge.com/T0351JZQ0-U04N1J9C4TD-15af555d7ea0-512',
-    wikipedia: 'https://en.wikipedia.org'
-})
-    .then((member) => {
-        console.log('RAW CREATED MEMBER', member);
-        console.log('CREATED MEMBER JSON', member.toJson());
-    })
-
-
-// find member in database
-member.findOne({
-    where: { name: 'Luke Bomb' }
-}).then((foundUser) => {
-    console.log('FOUND USER JSON', foundUser.toJson());
-})
-    .catch((err) => {
-        console.log('ERROR', err);
-    })
+// read a member in database
+// member.findOne({
+//     where: { name: 'Rome Bell' }
+// })
+// .then(foundMember => {
+//     console.log('found member', foundMember.toJSON());
+// })
+// .catch(err => console.log('Error', err));
 
 // find or create a member
-member.findOrCreate({
-    where: { name: 'Rome Bell' },
-    defaults: {
-        status: 'active',
-        agency: 'Rosscosmos',
-        image: 'https://ca.slack-edge.com/T0351JZQ0-U0166E8MHJT-a00fa1232131-512',
-        wikipedia: 'https://en.wikipedia.org'
-    }
-})
-    .then(([foundOrCreatedMember, created]) => {
-        console.log('FOUND OR CREATED MEMBER', foundOrCreatedMember.toJson());
-        console.log('CREATED?', created);
-    })
-    .catch((err) => {
-        console.log('ERROR', err);
-    })
+// member.findOrCreate({
+//     where: { name: 'Ethan Paiva' },
+//     defaults: { 
+//         status: 'active', 
+//         agency: 'Roscosmos', 
+//         image: 'https://ca.slack-edge.com/T0351JZQ0-U04MV3X1K46-e0b0baa58e91-512',
+//         wikipedia: 'https://wikipedia.com'
+//     }
+// })
+// .then(([member, created]) => {
+//     console.log('created or not:', created);
+//     console.log('member', member.toJSON());
+// })
+// .catch(err => console.log('Error', err));
 
-// find all memebrs
-//member.findAll()
-//    .then((allMembers) => {
-//        console.log('ALL MEMBERS', allMembers);
-//       cleanedMembers = allMembers.map((member) => {
-//           return member.toJson();
-//            console.log('CLEANED MEMBERS ARRAY', cleanedMembers);
-//        })
-//    })
-//    .catch((err) => {
-//        console.log('ERROR', err);
-//    })
+// find all members
+// member.findAll()
+// .then(members => {
+//     // console.log('All members', members);
+//     // clean the data
+//     cleanedMembers = members.map(member => member.toJSON());
+//     console.log('CLEANED MEMBERS ARRAY', cleanedMembers);
+// })
+// .catch(err => console.log('Error', err));
 
-// find members based on 'active' status
-member.findAll({
-    where: { status: 'active' }
-})
-    .then((activeMembers) => {
-        console.log('ACTIVE MEMBERS', activeMembers);
-        cleanedActiveMembers = activeMembers.map((member) => {
-            return member.toJson();
-            console.log('CLEANED ACTIVE MEMBERS ARRAY', cleanedActiveMembers);
-        })
-            .catch((err) => {
-                console.log('ERROR', err);
-            })
-    })
+// find member based off active status
+// member.findAll({
+//     where: { status: 'active' }
+// })
+// .then(members => {
+//     // console.log('All members', members);
+//     // clean the data
+//     cleanedMembers = members.map(member => member.toJSON());
+//     console.log('CLEANED MEMBERS ARRAY', cleanedMembers);
+// })
+// .catch(err => console.log('Error', err));
 
 // update a member
-member.update({
-    status: 'unknown'
-}, {
-    where: { status: 'active' }
-})
-    .then((numRowsChanged) => {
-        console.log('NUM ROWS CHANGED', numRowsChanged);
-    })
-    .catch((err) => {
-        console.log('ERROR', err);
-    })
+// member.update({ status: 'active' }, {
+//     where: { status: 'unknown', id: 1 }
+// })
+// .then(numOfRowsChanged => {
+//     console.log('how many rows got updated?', numOfRowsChanged);
+// })
+// .catch(err => console.log('Error', err));
 
-// delete a member
-member.destroy({
-    where: { name: 'John Doe' }
-})
-    .then((numRowsDeleted) => {
-        console.log('NUM ROWS DELETED', numRowsDeleted);
-    })
-    .catch((err) => {
-        console.log('ERROR', err);
-    })
+// delete member
 
-//find all ships
-ship.findAll()
-    .then((allships) => {
-        console.log('ALL ships', allships);
-        cleanedships = allships.map((ship) => {
-            return ship.toJson();
-            console.log('CLEANED ships ARRAY', cleanedships);
-        })
-            .catch((err) => {
-                console.log('ERROR', err);
-            })
-    })
+// this will go to the members table inside of the spacex database, 
+// search the table for name (column) John Smith (all)
+// then deletes that row from the table 
+// in the .then there is a callback, which takes in the result and runs a function
+// to execute whatever we want [ redirect to another site, json response via an API, or console.logging ]
+// .catch [error: the table doesn't exist, the column doesn't exist, syntaxError, referenceError]
 
-// create or find ships
-ship.findOrCreate({
-    where: { name: 'GO Pursuit' },
-    defaults: {
-        class: 7174230,
-        year_built: 2007,
-        home_port: "Port Canaveral",
-        name: "GO Pursuit",
-        type: "Cargo",
-        class: 7174230,
-        mass_kg: 502999,
-        mass_lbs: 1108925,
-        link: "https://www.marinetraffic.com/en/ais/details/ships/shipid:439594/mmsi:367191410/imo:9458884/vessel:GO_PURSUIT",
-        image: "https://i.imgur.com/5w1ZWre.jpg",
-        active: false,
-        legacy_id: "GOPURSUIT"
-    }
-})
-    .then(([foundOrCreatedship, created]) => {
-        console.log('FOUND OR CREATED ship', foundOrCreatedship.toJson());
-        console.log('CREATED?', created);
-    })
-    .catch((err) => {
-        console.log('ERROR', err);
-    })
+// member.destroy({ 
+//     where: { name: 'John Smith'}
+// })
+// .then(numOfRowsDeleted => {
+//     console.log('How many rows were deleted?', numOfRowsDeleted);
+//     // redirect the user back to all members page /members
+
+// })
+// .catch(err => console.log('Error', err));
+// render an 404 page, or some page that says "member is not found, please try again"
 
 
-//ship.findOne({
-//    where: { name: 'GO Pursuit' }
-//}).then((foundShip) => {
-//    console.log('FOUND SHIP JSON', foundShip.toJson());
-//})
-//    .catch((err) => {
-//        console.log('ERROR', err);
-//   })
+// find all capsules
+// capsule.findAll()
+// .then(capsules => {
+//     // console.log('All members', members);
+//     // clean the data
+//     cleanedCapsules = capsules.map(capsule => capsule.toJSON());
+//     console.log('CLEANED CAPSULES ARRAY', cleanedCapsules);
+// })
+// .catch(err => console.log('Error', err));
 
-ship.findAll({
-    where: { status: 'active' }
-})
-    .then((activeships) => {
-        console.log('ACTIVE SHIPS', activeships);
-        cleanedActiveships = activeships.map((ship) => {
-            return ship.toJson();
-            console.log('CLEANED ACTIVE SHIPS ARRAY', cleanedActiveships);
-        })
-            .catch((err) => {
-                console.log('ERROR', err);
-            })
-    })
 
-ship.findOne({
-    where: { legacy_id: 'GOPURSUIT' }
-}).then((foundShip) => {
-    console.log('FOUND SHIP JSON', foundShip.toJson());
-})
-    .catch((err) => {
-        console.log('ERROR', err);
-    })
-
-// update a ship
-ship.update({
-    status: 'active'
-}, {
-    where: { status: 'unknown' }
-})
-    .then((numRowsChanged) => {
-        console.log('NUM ROWS CHANGED', numRowsChanged);
-    })
-    .catch((err) => {
-        console.log('ERROR', err);
-    })
-
-// delete a ship
-ship.destroy({
-    where: { name: 'GO Pursuit' }
-})
-    .then((numRowsDeleted) => {
-        console.log('NUM ROWS DELETED', numRowsDeleted);
-    })
-    .catch((err) => {
-        console.log('ERROR', err);
-    })
-
-//make a user
-user.create({
-    firstName: 'Luke',
-    lastName: 'Bomb',
-    email: 'lukebomb@email.com'
-})
-    .then((user) => {
-        console.log('RAW CREATED USER', user);
-        console.log('CREATED USER JSON', user.toJson());
-    }
-    )
-    .catch((err) => {
-        console.log('ERROR', err);
-    }
-    )
+// create a user
+// user.create({
+//     firstName: 'Ron',
+//     lastName: 'Jones',
+//     email: 'ronjones@email.com'
+// })
+// .then(newUser => {
+//     console.log('new user', newUser.toJSON());
+// })
+// .catch(err => console.log('Error', err));
 
 // find a user and create an order
-user.findOne({
-    where: { email: 'lukebomb@email.com' }
+// user.findOne({
+//     where: { email: "ronjones@email.com" }
+// })
+// .then(user => {
+//     console.log('found user', user.toJSON());
+//     // create an order
+//     user.createOrder({
+//         items_purchased: 4,
+//         payment_method: 'American Express',
+//         total: 700000.15
+//     })
+//     .then(newOrder => {
+//         console.log('new order created', newOrder.toJSON());
+//     })
+//     .catch(err => console.log('Error', err));
+// })
+// .catch(err => console.log('Error', err));
+
+// find a user and get back all orders
+// user.findOne({
+//     where: { email: "ronjones@email.com" }
+// })
+// .then(user => {
+//     // read all orders
+//     user.getOrders()
+//     .then(orders => {
+//         console.log('all orders', orders);
+//         const cleaned_orders = orders.map(o => o.toJSON());
+//         console.log('clean orders', cleaned_orders);
+//     }) // what is orders (datatype)?
+//     .catch(err => console.log('Error', err));
+// })
+// .catch(err => console.log('Error', err));
+
+// create the order, then find the user, lastly add order to user
+// order.create({
+//     items_purchased: 7,
+//     total: 1000000.99,
+//     payment_method: 'American Express'
+// })
+// .then(order => {
+//     console.log('new order', order.toJSON());
+//     // find the user
+//     user.findOne({
+//         where: { email: "ronjones@email.com" }
+//     })
+//     .then(user => {
+//         console.log('found the user', user.toJSON());
+//         // add order to user
+//         user.addOrder(order)
+//         .then(addOrder => {
+//             console.log('result', addOrder);
+//             // find all orders
+//             user.getOrders()
+//             .then(orders => {
+//                 console.log('all orders', orders);
+//             })
+//             .catch(err => console.log('Error', err));
+//         })
+//         .catch(err => console.log('Error', err));
+//     })
+//     .catch(err => console.log('Error', err));
+// })
+// .catch(err => console.log('Error', err));
+
+
+// Add a mission
+// mission.create({
+//     flight_number: 34934893,
+//     name: "Steal The Moon",
+//     details: "Plan to take the minerals from the moon and send them back to Earth"
+// })
+// .then(mission => {
+//     console.log('new mission', mission.toJSON());
+
+//     // find capsule
+//     capsule.findOne({
+//         where: { id: 1 } 
+//     })
+//     .then(capsule => {
+//         console.log('found capsule', capsule.toJSON());
+//         // add capsule to mission
+//         mission.addCapsule(capsule)
+//         .then(result => {
+//             console.log('-------> RESULT', result); // array that has the association between capsule and mission
+//         })
+//         .catch(err => console.log('Error', err));
+//     })
+//     .catch(err => console.log('Error', err));
+// })
+// .catch(err => console.log('Error', err));
+
+// TODO: find a capsule (id=2), create a mission, and then add mission to capsule (hint: addMission)
+// capsule.findOne({
+//     where: { id: 2}
+// })
+// .then(foundCapsule => {
+//     console.log('found capsule', foundCapsule.toJSON());
+//     // create a mission
+//     mission.create({
+//         flight_number: 309454,
+//         name: 'Make it back...',
+//         details: 'Take us home'
+//     })
+//     .then(createdMission => {
+//         console.log('created mission', createdMission.toJSON());
+//         // add mission to capsule
+//         foundCapsule.addMission(createdMission)
+//         .then(result => {
+//             console.log('result...', result);
+//         })
+//         .catch(err => console.log('Error', err));
+//     })
+//     .catch(err => console.log('Error', err));
+// })
+// .catch(err => console.log('Error', err));
+
+// find a mission, getCapsules() ***
+
+// find a capsule, getMissions() ***
+
+// *** we can do these
+
+// find a mission and include all of the capsules
+mission.findOne({
+    where: { id: 1 },
+    include: [capsule]
 })
-    .then((foundUser) => {
-        console.log('FOUND USER JSON', foundUser.toJson());
-        foundUser.createOrder({
-            total: 200000.15,
-            items_purchased: 5,
-            payment_method: 'American Express'
-        })
-            .then((order) => {
-                console.log('RAW CREATED ORDER', order);
-                console.log('CREATED ORDER JSON', order.toJson());
-            })
-    })
-
-// find user and return all orders
-user.findOne({
-    where: { email: 'lukebomb@email.com' }
+.then(foundMission => {
+    console.log('1. mission with capsules included', foundMission.toJSON());
 })
-    .then((foundUser) => {
-        // read all orders for this user
-        foundUser.getOrders()
-            .then((orders) => {
-                console.log('ORDERS', orders);
-                const cleanedOrders = orders.map(order => order.toJson()); {
-                }
-                console.log('CLEANED ORDERS', cleaned_orders);
-            })
-            .catch((err) => {
-                console.log('ERROR', err);
-            })
-    })
-    .catch((err) => {
-        console.log('ERROR', err);
-    })
+.catch(err => console.log('Error', err));
 
-order.create({
-    items_purchased: 7,
-    total: 1000000.99,
-    payment_method: 'American Express',
-})
-    .then((order) => {
-        console.log('RAW CREATED ORDER', order);
-        console.log('CREATED ORDER JSON', order.toJson());
-        user.findOne({
-            where: { email: 'lukebomb@email.com' }
-        })
-            .then((foundUser) => {
-                console.log('FOUND USER JSON', foundUser.toJson());
-                foundUser.addOrder(order)
-                    .then((orders) => {
-                        console.log('RELATION INFO', orders);
-                    })
-            })
-            .catch((err) => {
-                console.log('ERROR', err);
-            })
-    })
-    .catch((err) => {
-        console.log('ERROR', err);
-    })
-
-//add a mission to a capsule
-mission.create({
-    flight_number: 34934893,
-    name: 'Steal the Moon',
-    details: 'Robbing the moon of its cheese'
-})
-    .then((mission) => {
-        console.log('RAW CREATED MISSION', mission);
-        console.log('CREATED MISSION JSON', mission.toJson());
-        capsule.findOne({
-            where: { id: 1 }
-        })
-            .then((foundCapsule) => {
-                console.log('FOUND CAPSULE JSON', foundCapsule.toJson());
-                mission.addCapsule(capsule)
-                    .then(updatedMission => {
-                        console.log('result', updatedMission)
-                        // get capsules that belong to mission
-                        updatedMission.getCapsule()
-                            .then(capsules => {
-                                console.log('CAPSULES', capsules);
-                            })
-                            .catch((err) => {
-                                console.log('ERROR', err);
-                            })
-                            .catch((err) => {
-                                console.log('ERROR', err);
-                            })
-                            .catch((err) => {
-                                console.log('ERROR', err);
-                            })
-                    })
-                    .catch((err) => {
-                        console.log('ERROR', err);
-                    })
-            })
-    })
-    .catch((err) => {
-        console.log('ERROR', err);
-    }
-    )
-
-
-    //find capsule and create a mission, then add mission to capsule (hint: addMission)
+// find a capsule and include all of the missions
 capsule.findOne({
-    where: { id: 2 }
+    where: { id: 2 },
+    include: [mission]
 })
-    .then((foundCapsule) => {
-        console.log('FOUND CAPSULE JSON', foundCapsule.toJson());
-        mission.create({
-            flight_number: 309454,
-            name: 'Make it back...',
-            details: 'Return with all the moon cheese'
-        })
-            .then((mission) => {
-                console.log('RAW CREATED MISSION', mission);
-                console.log('CREATED MISSION JSON', mission.toJson());
-                foundCapsule.addMission(mission)
-                    .then(updatedCapsule => {
-                        console.log('result', updatedCapsule)
-                        // get missions that belong to capsule
-                        updatedCapsule.getMission()
-                            .then(missions => {
-                                console.log('MISSIONS', missions);
-                            })
-                            .catch((err) => {
-                                console.log('ERROR', err);
-                            })
-                    })
-                    .catch((err) => {
-                        console.log('ERROR', err);
-                    })
-            })
-            .catch((err) => {
-                console.log('ERROR', err);
-            }
-            )
-    })
-
-    mission.findOne({
-        where: { id: 1 }
-        include: [capsule]
-    })
-        .then((foundMission) => {
-            console.log('FOUND MISSION JSON', foundMission.toJson());
-            console.log('FOUND MISSION JSON', foundMission.capsule.toJson());
-        })
-        .catch((err) => {
-            console.log('ERROR', err);
-        })
+.then(foundCapsule => {
+    console.log('2. capsule with missions included', foundCapsule.toJSON());
+})
+.catch(err => console.log('Error', err));

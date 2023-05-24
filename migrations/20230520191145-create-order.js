@@ -9,13 +9,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userID: {
+      userId: {
         type: Sequelize.INTEGER
       },
       total: {
         type: Sequelize.FLOAT
       },
-      items_purchased: {
+      items_puchased: {
         type: Sequelize.INTEGER
       },
       payment_method: {

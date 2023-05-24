@@ -1,0 +1,63 @@
+<!-- details page -->
+<section class="pt-6">
+    <div class="container shadow section-sm rounded">
+       <div class="columns is-multiline">
+          <!-- sidebar -->
+          <div class="column is-3-desktop is-12-tablet">
+             <ul class="sidenav">
+                 <li title="Basic Startup" class="sidelist parent active">
+                     <a href="/capsules">Capsules</a>
+                     <% console.log('CAPSULES ->', capsules) %>
+                       <ul>
+                         <% for( let index=0; index < capsules.length; index++ ) { %>
+                           <% let capsule=capsules[index]; %>
+                             <li class="sidelist">
+                               <a href="/capsules/<%= capsule.id %>">
+                                 <%= capsule.serial %>
+                               </a>
+                               <% } %>
+                             </li>
+                       </ul>
+                   </li>
+             </ul>
+          </div>
+ 
+          <div class="column is-8-desktop is-12-tablet">
+             <div class="px-4">
+                <h2 class="mb-4 has-text-weight-medium">Capsule</h2>
+                <div class="content">
+ 
+                   <!-- heading -->
+ 
+                   <hr>
+ 
+                   <!-- emphasis -->
+                   <h5 id="emphasis">Capsule Details</h5>
+                   <div>
+                     <h2><%= capsule.type %></h2>
+                     <p><strong>Serial Number:</strong> <%= capsule.serial %></p>
+                     <p><strong>Last Update:</strong> <%= capsule.last_update %></p>
+                     <p><strong>ID:</strong> <%= capsule.id %></p>
+                     <p><strong>Type:</strong> <%= capsule.type%></p>
+                   </div>
+                   <hr>
+                   <ul>
+                      <li><p>Reuse Count:</strong> <%= capsule.reuse_count %></p></li>
+                      <li><p>Water Landings:</strong> <%= capsule.water_landings %></p></li>
+                   </ul>
+                    
+                    <div class="buttons">
+                      <a class="button is-success" href="/capsules/edit/<%= capsule.id %>">E
+                         dit <%= capsule.serial %></a>
+                      <form  method="POST" action="/capsules/<%= capsule.id %>/?_method=DELETE">
+                            <input class="button is-danger" type="submit" value="Delete">
+                      </form>
+                   
+                    </div>
+                <!-- navigation -->
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+ <!-- /details page -->

@@ -1,5 +1,4 @@
 'use strict';
-const { type } = require('os');
 const {
   Model
 } = require('sequelize');
@@ -12,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.capsule.belongsToMany(models.mission, {through: 'missionsCapsules'})
+      models.capsule.belongsToMany(models.mission, { through: 'missionsCapsules' });
     }
   }
   capsule.init({

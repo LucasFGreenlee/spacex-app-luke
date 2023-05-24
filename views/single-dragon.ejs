@@ -1,0 +1,308 @@
+<section class="pt-6">
+    <div class="container shadow section-sm rounded">
+        <div class="columns is-multiline">
+            <!-- sidebar -->
+            <div class="column is-3-desktop is-12-tablet">
+                <ul class="sidenav">
+                    <li title="dragons" class="sidelist parent active">
+                        <a href="/dragons">Dragons</a>
+                        <ul>
+                            <li class="sidelist parent active">
+                                <a href="/dragons/<%= dragon.id %>">
+                                    <%= dragon.name %>
+                                </a>
+                            </li>
+                            <% dragons.forEach((drag)=> { %>
+                                <% if (drag.name !==dragon.name) { %>
+                                    <li class="sidelist">
+                                        <a href="/dragons/<%= drag.id %>">
+                                            <%= drag.name %>
+                                        </a>
+                                    </li>
+                                    <% } %>
+                                        <% }); %>
+                        </ul>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/capsules">Capsules</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/cores">Cores</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/crew">Crew</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/landpads">Landpads</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/launches">Launches</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/launchpads">Launchpads</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/payloads">Payloads</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/roadster">Roadster</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/rockets">Rockets</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/ships">Ships</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/starlink">Starlink</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="column is-8-desktop is-12-tablet">
+                <div class="px-4">
+                    <h2 class="mb-4 has-text-weight-normal">Single Dragon - <a class="has-text-weight-light"
+                            href="/dragons/search">search</a></h2>
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <img src="<%= dragon.flickr_images[0] %>" alt="dragon">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="content">
+                                <div class="media">
+                                    <div class="media-content">
+                                        <p class="title is-4">
+                                            <%= dragon.name %>
+                                        </p>
+                                        <section>
+                                            <p class="subtitle is-size-6">
+                                                <%= dragon.description %>
+                                            </p>
+                                        </section>
+                                        <span class="has-text-weight-normal"><a
+                                                href="<%= dragon.wikipedia %>">Wikipedia</a></span><br />
+                                        <br />
+                                        <span class="has-text-weight-normal">Images:</span><br />
+                                        <ul>
+                                            <% dragon.flickr_images.forEach((i)=> { %>
+                                                <li><a href="<%= i %>">image</a></li>
+                                                <% }); %>
+                                        </ul>
+                                        <br />
+                                        <span class="has-text-weight-normal">Type: </span>
+                                        <%= dragon.type %><br />
+                                            <span class="has-text-weight-normal">First Flight: </span>
+                                            <%= dragon.first_flight %><br />
+                                                <span class="has-text-weight-normal">Active: </span>
+                                                <%= dragon.active %><br />
+                                                    <span class="has-text-weight-normal">Crew Capacity: </span>
+                                                    <%= dragon.crew_capacity %><br />
+                                                        <span class="has-text-weight-normal">Orbit Duration (years):
+                                                        </span>
+                                                        <%= dragon.orbit_duration_yr %><br />
+                                                            <br />
+                                                            <span class="has-text-weight-normal">Sidewall Angle
+                                                                (degrees): </span>
+                                                            <%= dragon.sidewall_angle_deg %><br />
+                                                                <span class="has-text-weight-normal">Diameter (m/ft):
+                                                                </span>
+                                                                <%= dragon.diameter.meters %>/<%= dragon.diameter.feet
+                                                                        %><br />
+                                                                        <span class="has-text-weight-normal">Dry Mass
+                                                                            (kg/lbs): </span>
+                                                                        <%= dragon.dry_mass_kg %>/<%= dragon.dry_mass_lb
+                                                                                %><br />
+                                                                                <span
+                                                                                    class="has-text-weight-normal">Launch
+                                                                                    Payload Mass (kg/lbs): </span>
+                                                                                <%= dragon.launch_payload_mass.kg %>/<%=
+                                                                                        dragon.launch_payload_mass.lb %>
+                                                                                        <br />
+                                                                                        <span
+                                                                                            class="has-text-weight-normal">Launch
+                                                                                            Payload Volume (m<super>3
+                                                                                            </super>/ft<super>3</super>
+                                                                                            ): </span>
+                                                                                        <%= dragon.launch_payload_vol.cubic_meters
+                                                                                            %>/<%=
+                                                                                                dragon.launch_payload_vol.cubic_feet
+                                                                                                %><br />
+                                                                                                <span
+                                                                                                    class="has-text-weight-normal">Return
+                                                                                                    Payload Mass
+                                                                                                    (kg/lbs): </span>
+                                                                                                <%= dragon.return_payload_mass.kg
+                                                                                                    %>/<%=
+                                                                                                        dragon.return_payload_mass.lb
+                                                                                                        %><br />
+                                                                                                        <span
+                                                                                                            class="has-text-weight-normal">Return
+                                                                                                            Payload
+                                                                                                            Volume (m
+                                                                                                            <super>3
+                                                                                                            </super>/ft
+                                                                                                            <super>3
+                                                                                                            </super>):
+                                                                                                        </span>
+                                                                                                        <%= dragon.return_payload_vol.cubic_meters
+                                                                                                            %>/<%=
+                                                                                                                dragon.return_payload_vol.cubic_feet
+                                                                                                                %><br />
+                                                                                                                <br />
+                                                                                                                <span
+                                                                                                                    class="has-text-weight-normal">Heat
+                                                                                                                    Shield:
+                                                                                                                </span><br />
+                                                                                                                <ul>
+                                                                                                                    <li>Material:
+                                                                                                                        <%= dragon.heat_shield.material
+                                                                                                                            %>
+                                                                                                                    </li>
+                                                                                                                    <li>Size
+                                                                                                                        (meters):
+                                                                                                                        <%= dragon.heat_shield.size_meters
+                                                                                                                            %>
+                                                                                                                    </li>
+                                                                                                                    <li>Temp
+                                                                                                                        (degrees):
+                                                                                                                        <%= dragon.heat_shield.temp_degrees
+                                                                                                                            %>
+                                                                                                                    </li>
+                                                                                                                    <li>Dev
+                                                                                                                        Partner:
+                                                                                                                        <%= dragon.heat_shield.dev_partner
+                                                                                                                            %>
+                                                                                                                    </li>
+                                                                                                                </ul>
+                                                                                                                <span
+                                                                                                                    class="has-text-weight-normal">Pressurized
+                                                                                                                    Capsule:
+                                                                                                                </span><br />
+                                                                                                                <ul>
+                                                                                                                    <li>
+                                                                                                                        Payload
+                                                                                                                        Volume
+                                                                                                                        (m
+                                                                                                                        <super>
+                                                                                                                            3
+                                                                                                                        </super>
+                                                                                                                        /ft
+                                                                                                                        <super>
+                                                                                                                            3
+                                                                                                                        </super>
+                                                                                                                        ):
+                                                                                                                        <%= dragon.pressurized_capsule.payload_volume.cubic_meters
+                                                                                                                            %>
+                                                                                                                            /
+                                                                                                                            <%= dragon.pressurized_capsule.payload_volume.cubic_feet
+                                                                                                                                %>
+                                                                                                                    </li>
+                                                                                                                    </li>
+                                                                                                                </ul>
+                                                                                                                <span
+                                                                                                                    class="has-text-weight-normal">Trunk:
+                                                                                                                </span><br />
+                                                                                                                <ul>
+                                                                                                                    <li>Trunk
+                                                                                                                        Volume
+                                                                                                                        (m
+                                                                                                                        <super>
+                                                                                                                            3
+                                                                                                                        </super>
+                                                                                                                        /ft
+                                                                                                                        <super>
+                                                                                                                            3
+                                                                                                                        </super>
+                                                                                                                        ):
+                                                                                                                        <%= dragon.trunk.trunk_volume.cubic_meters
+                                                                                                                            %>
+                                                                                                                            /
+                                                                                                                            <%= dragon.trunk.trunk_volume.cubic_feet
+                                                                                                                                %>
+                                                                                                                    </li>
+                                                                                                                    <li>Height
+                                                                                                                        With
+                                                                                                                        Trunk
+                                                                                                                        (m/ft):
+                                                                                                                        <%= dragon.height_w_trunk.meters
+                                                                                                                            %>
+                                                                                                                            /
+                                                                                                                            <%= dragon.height_w_trunk.feet
+                                                                                                                                %>
+                                                                                                                    </li>
+                                                                                                                    <li>Cargo:
+                                                                                                                        <ul>
+                                                                                                                            <li>Solar
+                                                                                                                                Array:
+                                                                                                                                <%= dragon.trunk.cargo.solar_array
+                                                                                                                                    %>
+                                                                                                                            </li>
+                                                                                                                            <li>Unpressurized
+                                                                                                                                Cargo:
+                                                                                                                                <%= dragon.trunk.cargo.unpressurized_cargo
+                                                                                                                                    %>
+                                                                                                                            </li>
+                                                                                                                        </ul>
+                                                                                                                    </li>
+                                                                                                                </ul>
+                                                                                                                <span
+                                                                                                                    class="has-text-weight-normal">Thrusters:
+                                                                                                                </span><br />
+                                                                                                                <ul>
+                                                                                                                    <%
+                                                                                                                        dragon.thrusters.forEach((i)=>
+                                                                                                                        {
+                                                                                                                        %>
+                                                                                                                        <li>
+
+                                                                                                                            Type:
+                                                                                                                            <%= i.type
+                                                                                                                                %>
+                                                                                                                                <br />
+                                                                                                                                Amount:
+                                                                                                                                <%= i.amount
+                                                                                                                                    %>
+                                                                                                                                    <br />
+                                                                                                                                    Pods:
+                                                                                                                                    <%= i.pods
+                                                                                                                                        %>
+                                                                                                                                        <br />
+                                                                                                                                        Fuel
+                                                                                                                                        1:
+                                                                                                                                        <%= i.fuel_1
+                                                                                                                                            %>
+                                                                                                                                            <br />
+                                                                                                                                            Fuel
+                                                                                                                                            2:
+                                                                                                                                            <%= i.fuel_2
+                                                                                                                                                %>
+                                                                                                                                                <br />
+                                                                                                                                                ISP:
+                                                                                                                                                <%= i.isp
+                                                                                                                                                    %>
+                                                                                                                                                    <br />
+                                                                                                                                                    Thurst
+                                                                                                                                                    (kN/lbf):
+                                                                                                                                                    <%= i.thrust.kN
+                                                                                                                                                        %>
+                                                                                                                                                        /
+                                                                                                                                                        <%= i.thrust.lbf
+                                                                                                                                                            %>
+                                                                                                                                                            <br />
+                                                                                                                                                            <br />
+                                                                                                                        </li>
+                                                                                                                        <% });
+                                                                                                                            %>
+                                                                                                                </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

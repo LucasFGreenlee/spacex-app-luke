@@ -1,0 +1,100 @@
+<section class="pt-6">
+    <div class="container shadow section-sm rounded">
+        <div class="columns is-multiline">
+            <!-- sidebar -->
+            <div class="column is-3-desktop is-12-tablet">
+                <ul class="sidenav">
+                    <li title="cores" class="sidelist parent">
+                        <a href="/cores">Cores</a>
+                        <ul>
+                            <li class="sidelist parent active">
+                                <a href="/cores/<%= core.id %>">
+                                    <%= core.serial %>
+                                </a>
+                            </li>
+                            <% cores.forEach((cap)=> { %>
+                                <% if (cap.id !==core.id) { %>
+                                    <li class="sidelist">
+                                        <a href="/cores/<%= cap.id %>">
+                                            <%= cap.serial %>
+                                        </a>
+                                    </li>
+                                <% } %>
+                            <% }); %>
+                        </ul>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/capsules">Capsules</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/crew">Crew</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/dragons">Dragons</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/landpads">Landpads</a>    
+                    </li>
+                    <li class="sidelist">
+                        <a href="/launches">Launches</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/launchpads">Launchpads</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/payloads">Payloads</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/roadster">Roadster</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/rockets">Rockets</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/ships">Ships</a>
+                    </li>
+                    <li class="sidelist">
+                        <a href="/starlink">Starlink</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="column is-8-desktop is-12-tablet">
+                <div class="px-4">
+                    <h2 class="mb-4 has-text-weight-medium">Single Core - <a class = "has-text-weight-light" href="/cores/search">search</a></h2>
+                    <div class="card">
+                        <h4 class="mb-4 has-text-weight-medium"><%= core.serial %></h4>
+                        <div class="content">
+                            <% if(core.status === 'active') { %>
+                               <div class="badge changed">Active</div>
+                            <% } else if (core.status === 'inactive') { %>
+                               <div class="badge unreleased">Inactive</div>
+                            <% } else if (core.status === 'expended') { %>
+                               <div class="badge removed">Expended</div>
+                            <% } else if (core.status === 'lost') { %>
+                               <div class="badge depricated">Lost</div>
+                            <% } %>
+                            <p><%= core.last_update %></p>
+                            <ul>
+                                <li>Block: <%= core.block %></li>
+                                <li>Reuse Count: <%= core.reuse_count %></li>
+                                <li>RTLS Attempts: <%= core.rtls_attempts %></li>
+                                <li>RTLS Landings: <%= core.rtls_landings %></li>
+                                <li>ASDS Attempts: <%= core.asds_attempts %></li>
+                                <li>ASDS Landings: <%= core.asds_landings %></li>
+                            </ul>
+                            <div class="mt-5">
+                                <h5>Launches</h5>
+                                <ul>
+                                   <% core.launches.forEach((launch) => { %>
+                                      <li><%= launch %></li>
+                                   <% }); %>
+                                </ul>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
